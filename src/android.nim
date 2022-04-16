@@ -52,6 +52,7 @@ proc copy_icon()=
         if fileExists(src_path):
             copyFile(src_path,dest_path)     
         else:
+            if fileExists(dest_path):removeFile(dest_path)
             echo "No android_icon.png found\n"
     except:
         echo "Copying icon failed"
@@ -63,6 +64,7 @@ proc copyAppFile()=
         if fileExists(app_path):
             copyFile(app_path,app_dest)
         else:
+            if fileExists(app_dest):removeFile(app_dest)
             echo "no app.guyi file found (you can add it manually to the assets folder)"
     except:
         echo "Failed to copy app.guyi file", getCurrentException().msg
